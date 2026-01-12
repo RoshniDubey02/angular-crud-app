@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,20 @@ export class ApiService {
 
   baseUrl = 'https://jsonplaceholder.typicode.com/users';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
+
+  handleError(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      panelClass: ['error-snackbar']
+    });
+  }
+  showSuccess(message: string) {
+    this.snackBar.open(message, 'OK', {
+      duration: 2500,
+      panelClass: ['success-snackbar']
+    });
+  }
 
   // READ
   getData() {

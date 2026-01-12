@@ -1,3 +1,29 @@
+<mat-card class="form-card">
+  <h3>{{ userObj.id ? 'Update User' : 'Add User' }}</h3>
+
+  <form class="form-grid">
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Name" [(ngModel)]="userObj.name" name="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Username" [(ngModel)]="userObj.username" name="username">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Email" [(ngModel)]="userObj.email" name="email">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Company" [(ngModel)]="userObj.company.name" name="company">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="userObj.id ? updateUser() : addUser()">
+      {{ userObj.id ? 'Update' : 'Add' }}
+    </button>
+  </form>
+</mat-card>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!-- ID Column -->
@@ -29,6 +55,15 @@
     <th mat-header-cell *matHeaderCellDef> Company </th>
     <td mat-cell *matCellDef="let element">
       {{element.company?.name}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="primary" (click)="editUser(element)">Edit</button>
+
+      <button mat-raised-button color="warn" class="ms-2" (click)="deleteUser(element.id)">Delete</button>
     </td>
   </ng-container>
 

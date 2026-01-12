@@ -1,0 +1,14 @@
+.form-card {
+  margin-bottom: 20px;
+  padding: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+table {
+  width: 100%;
+}
